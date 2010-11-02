@@ -22,6 +22,8 @@
 ;; turn on unipoint-mode
 ;; chord 
 
+(require 'thingatpt)
+
 (defconst *unipoint-table*
   '(("pm" "±")
     ("to" "→")
@@ -94,15 +96,54 @@
     ("omega" "ω")
     ))
 
-(defun unipoint-insert ()
-  "Inserts at point, a unicode codepoint by name"
-  (interactive)
+(defun unipoint-replace-symbol (word)
+  (let* ((hasmatch (try-completion word *unipoint-table*))
+         (wordtouse (if (eq t hasmatch)
+                        word
+                      hasmatch))
+        (cp (assoc-string wordtouse *unipoint-table*)))
+    (if cp
+        (progn
+          (kill-backward-chars 1)
+          (kill-word 1)
+          (insert (cadr cp))
+          t)
+      (> (length wordtouse) 0))))
+
+(defun unipoint-read-replace-symbol ()
   (let* ((ins (completing-read "\\" 
                                (mapcar 'identity *unipoint-table*) nil nil))
          (ent (assoc-string ins *unipoint-table*)))
     (if ent
         (insert (cadr ent))
-      (insert (concat "\\" ins)))))
+      (insert (concat "\\" ins))
+      t)))
+
+(defun unipoint-at-point ()
+  "Converts word before point to unicode if appropriate"
+  (interactive)
+  (let ((word (word-at-point)))
+     (if word
+        ; check that word is really \word and that it actually
+        ; exists
+         (and (save-excursion
+                (cond
+           ;; are we at the end of the word
+                 ((or (looking-at "$") (looking-at "\s+")) 
+                  (if (and (backward-word) ;; move to beginning of word
+                           (= (char-before) 92)) ;; previous character is '\'?
+                      (unipoint-replace-symbol word)))
+                 ((= (char-before) 92);; we're at the beginning of the word
+                  (unipoint-replace-symbol word))
+                 ;; TODO: we might be somewhere in the middle
+                 ))
+              (progn (forward-char) t)))))
+
+(defun unipoint-insert ()
+  "Inserts at point, a unicode codepoint by name"
+  (interactive)
+  (or (unipoint-at-point)
+      (unipoint-read-replace-symbol)))
 
 (define-minor-mode unipoint-mode
   "Toggle Unipoint mode."
