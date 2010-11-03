@@ -1,0 +1,32 @@
+This is a tutorial about unipoint-mode, a simple Emacs minor-mode for adding
+unicode characters to your code via their TeX names.
+
+If you're like me, you find some value in using unicode in code, but find it
+extremely annoying to do. With unipoint you can just type:
+
+   \lambda C-\ ==> λ
+
+You can also hit C-\ first, type the TeX name and then hit RET
+
+   C-\ alpha RET ==> α
+
+Tab completion works here too.
+
+   C-\ al TAB
+
+In situations where you go the inline approach (e.g. \aleph C-\), there's a
+completion mechanism as well.
+
+\sub C-\ should change \sub to \subset. Hitting C-\ again will complete:
+
+   \sub C-\ ==> \subset C-\ ==> ⊂
+
+but type eq after \subset completes:
+
+   \sub C-\ ==> \subset eq C-\ ==> ⊆
+
+Programs that are maths heavy are simple:
+
+   \theta = \theta_0 + \omega_0 * t + (1/2) * \alpha * t^2 ==>
+        θ = θ_0 + ω_0 * t + (1/2) * α * t^2
+

@@ -1,4 +1,4 @@
-Unipoint-mode is a simple way to insert common mathematical unicode codepoints
+unipoint-mode is a simple way to insert common mathematical unicode codepoints
 into an Emacs buffer.
 
 To use:
@@ -10,8 +10,13 @@ From Emacs:
 `M-: (require 'unipoint)`
 `M-x unipoint-mode`
 
-This will bind C-\ to `unipoint-insert` which allows you to type a LaTeX
-symbol and get a codepoint.
+Or, add it to your .emacs
+
+`(require 'unipoint)`
+
+This will bind C-\ to `unipoint-insert` which allows you to type a TeX
+symbol and get a codepoint. Or, change an already type TeX symbol name into
+its unicode representation.
 
 This idea was inspired by an email from a friend:
 
@@ -19,3 +24,5 @@ This idea was inspired by an email from a friend:
 > LaTeX name followed by control-\. For example, you type ∈ by typing
 > "\", "i", "n", "control-\". It's easy enough that I use Unicode in my
 > code all the time.
+
+See TUTORIAL.txt for more information.
