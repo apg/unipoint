@@ -1,6 +1,4 @@
-;;; -*- Mode: Emacs-Lisp; -*-
-
-;;;; unipoint.el - a simple way to insert unicode characters by TeX name
+;;; unipoint.el --- a simple way to insert unicode characters by TeX name
 ;; 
 ;; This file is NOT part of GNU Emacs
 ;;
