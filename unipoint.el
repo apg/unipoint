@@ -199,6 +199,7 @@
       (insert (concat "\\" ins))
       t)))
 
+;;;###autoload
 (defun unipoint-at-point ()
   "Converts word before point to unicode if appropriate"
   (interactive)
@@ -225,12 +226,14 @@
 
 
 
+;;;###autoload
 (defun unipoint-insert ()
   "Inserts at point, a unicode codepoint by name"
   (interactive)
   (or (unipoint-at-point)
       (unipoint-read-replace-symbol)))
 
+;;;###autoload
 (define-minor-mode unipoint-mode
   "Toggle Unipoint mode."
   ;; initial value
