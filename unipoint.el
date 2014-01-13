@@ -3,7 +3,10 @@
 ;; This file is NOT part of GNU Emacs
 ;;
 ;; Copyright (c) 2010, Andrew Gwozdziewycz <git@apgwoz.com>
-;;
+
+;; Author: Andrew Gwozdziewycz <git@apgwoz.com>
+;; URL : https://github.com/apgwoz/unipoint
+
 ;; This is free software; you can redistribute it and/or modify it under the
 ;; terms of the GNU General Public License as published by the Free Software
 ;; Foundation; either version 2, or (at your option) any later version. This is
@@ -14,11 +17,15 @@
 ;; Emacs; see the file `COPYING'. If not, write to the Free Software 
 ;; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 
+;;; Commentary:
+
 ;; How to use:
 ;; Add this file to your load-path
 ;; (require 'unipoint)
 ;; turn on unipoint-mode
 ;; chord 
+
+;;; Code:
 
 (require 'thingatpt)
 
@@ -241,3 +248,5 @@
   '(("\C-\\" . unipoint-insert)))
 
 (provide 'unipoint)
+
+;;; unipoint.el ends here
